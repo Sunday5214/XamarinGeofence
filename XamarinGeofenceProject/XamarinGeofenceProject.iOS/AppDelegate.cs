@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using UserNotifications;
 
 namespace XamarinGeofenceProject.iOS
 {
@@ -11,7 +12,7 @@ namespace XamarinGeofenceProject.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate, IUNUserNotificationCenterDelegate
     {
         public static LocationService LocationService = null;
         //
@@ -25,6 +26,15 @@ namespace XamarinGeofenceProject.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+
+            var center = UNUserNotificationCenter.Current;
+            center.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (result, error) =>
+            {
+                if(error != null)
+                {
+
+                }
+            });
 
             LocationService = new LocationService();
             LocationService.RequestAlwaysLocation();

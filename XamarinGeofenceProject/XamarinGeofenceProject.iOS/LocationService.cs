@@ -2,6 +2,7 @@
 using Foundation;
 using CoreLocation;
 using System.Diagnostics;
+using UserNotifications;
 
 namespace XamarinGeofenceProject.iOS
 {
@@ -20,11 +21,35 @@ namespace XamarinGeofenceProject.iOS
             switch(e.State)
 			{
 				case CLRegionState.Inside:
-					Debug.WriteLine("In");
+					var InContent = new UNMutableNotificationContent();
+                    InContent.Title = "들어옴";
+                    InContent.Body = "들어어어어어ㅓ어옴";
+
+				    Guid guid = Guid.NewGuid();
+					var inTrigger = UNTimeIntervalNotificationTrigger.CreateTrigger(1, false);
+					var inRequest = UNNotificationRequest.FromIdentifier($"Test-{guid}", InContent, inTrigger);
+					UNUserNotificationCenter.Current.AddNotificationRequest(
+						inRequest, (error) =>
+						{
+
+						}
+					);
 					break;
 				case CLRegionState.Outside:
-					Debug.WriteLine("Out");
-					break;
+                    var outContent = new UNMutableNotificationContent();
+                    outContent.Title = "나감";
+                    outContent.Body = "나아아아아ㅏ감";
+
+                    Guid outGuid = Guid.NewGuid();
+                    var outTrigger = UNTimeIntervalNotificationTrigger.CreateTrigger(1, false);
+                    var outRequest = UNNotificationRequest.FromIdentifier($"Test-{outGuid}", outContent, outTrigger);
+                    UNUserNotificationCenter.Current.AddNotificationRequest(
+                        outRequest, (error) =>
+                        {
+
+                        }
+                    );
+                    break;
 				default:
 					Debug.WriteLine("Holy..");
 					break;
