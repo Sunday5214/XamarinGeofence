@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using ObjCRuntime;
 using UIKit;
 using UserNotifications;
 
@@ -24,10 +25,14 @@ namespace XamarinGeofenceProject.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            var center = UNUserNotificationCenter.Current;
+
+            center.Delegate = new ForegroundNotificationDelegate();
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
-            var center = UNUserNotificationCenter.Current;
+           
             center.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (result, error) =>
             {
                 if(error != null)
@@ -39,6 +44,14 @@ namespace XamarinGeofenceProject.iOS
             LocationService = new LocationService();
             LocationService.RequestAlwaysLocation();
             return base.FinishedLaunching(app, options);
+        }
+    }
+
+    public class ForegroundNotificationDelegate : UNUserNotificationCenterDelegate
+    {
+        public override void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification, Action<UNNotificationPresentationOptions> completionHandler)
+        {
+            completionHandler(UNNotificationPresentationOptions.Alert | UNNotificationPresentationOptions.Badge | UNNotificationPresentationOptions.Sound);
         }
     }
 }
