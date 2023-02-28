@@ -38,5 +38,11 @@
 	<array>
 		<string>location</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>permission need to Location Access</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>permission need to Location Access</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>permission need to Location Access</string>
 </dict>
 </plist>

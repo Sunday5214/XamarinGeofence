@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -88,7 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamarinGeofenceProject\XamarinGeofenceProject.csproj">
-      <Project>{23F394E7-8837-477E-A782-59BC4EACB48D}</Project>
+      <Project>{D6777DA8-6D91-471A-9597-DD54790423B4}</Project>
       <Name>XamarinGeofenceProject</Name>
     </ProjectReference>
   </ItemGroup>
